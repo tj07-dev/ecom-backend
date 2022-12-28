@@ -1,0 +1,27 @@
+{
+  "name": "addtocart-backend",
+  "version": "1.0.0",
+  "description": "add to cart backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx tsc && node build/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./build/app.js"
+  },
+  "author": "Tanmay",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.15",
+    "@types/http-errors": "^2.0.1",
+    "@types/node": "^18.11.18",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "http-errors": "^2.0.0",
+    "nodemon": "^2.0.20"
+  }
+}
