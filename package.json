@@ -5,16 +5,23 @@
   "main": "index.js",
   "scripts": {
     "start": "npx tsc && node build/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha './build/tests/**/*.spec.js'",
+    "backend": "npx tsc && mocha './build/tests/**/*.spec.js' && nodemon ./build/app.js",
     "dev": "nodemon ./build/app.js"
   },
   "author": "Tanmay",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^4.3.4",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.15",
     "@types/http-errors": "^2.0.1",
+    "@types/mocha": "^10.0.1",
     "@types/node": "^18.11.18",
+    "@types/supertest": "^2.0.12",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.3",
     "typescript": "^4.9.4"
   },
   "dependencies": {
