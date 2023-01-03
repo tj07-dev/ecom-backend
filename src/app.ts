@@ -30,25 +30,33 @@ app.post('/cart', async (req: Request, res: Response) => {
     let quantity: number = req.body.quantity;
 
     if (availability > 0) {
-      res.send(
-        `Product ${id} is booked successfully and ${
+      const data = {
+        message: `Product ${id} is booked successfully and ${
           availability - quantity - 1
         } is left.`,
-      );
-      console.log(
-        `Product ${id} is booked successfully and ${
-          availability - quantity - 1
-        } is left.`,
-      );
+
+        theme: 'success',
+      };
+      res.send(data);
+      console.log(data.message);
       return res.end;
     } else {
-      console.log(`Product ${id} is currently out of stock`);
-      res.send(`Product ${id} is currently out of stock`);
+      const data = {
+        message: `Product ${id} is currently out of stock`,
+
+        theme: 'fail',
+      };
+      res.send(data);
+      console.log(data.message);
     }
     return res.end;
   } else {
-    res.send('Something went wrong');
-    console.log('Something went wrong');
+    const data = {
+      message: 'Something went wrong',
+      theme: 'fail',
+    };
+    res.send(data);
+    console.log(data.message);
   }
 });
 
@@ -59,28 +67,33 @@ app.post('/cartRemove', async (req: Request, res: Response) => {
     let availability: number = req.body.stock;
     let quantity: number = req.body.quantity;
     if (availability > 0) {
-      res.send(
-        `Product ${id} is removed from cart successfully and ${
+      const data = {
+        message: `Product ${id} is removed from cart successfully and ${
           availability - quantity + 1
         } is left.`,
-      );
-      console.log(
-        `Product ${id} is removed from cart successfully and Total ${
-          availability - quantity + 1
-        } is now available.`,
-      );
-      return res.end;
+        theme: 'info',
+      };
+      res.send(data);
+      console.log(data.message);
+
+      // return res.end(jsonData);
     }
-    res.statusMessage = 'Something went wrong';
+
     return res.end;
   } else {
-    res.send('Something went wrong');
-    console.log('Something went wrong');
+    const data = {
+      message: 'Something went wrong',
+      theme: 'fail',
+    };
+    res.send(data);
+    console.log(data.message);
   }
 });
 
 //checkout Api
 app.post('/checkout', async (req: Request, res: Response) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.type('json');
   let checkoutData = req.body;
   // console.log(checkoutData);
   var result = checkoutData.map((item: { id: number; quantity: number }) => {
@@ -88,6 +101,13 @@ app.post('/checkout', async (req: Request, res: Response) => {
       `Product ${item.id} with quantity ${item.quantity} is purchased successfully.`,
     );
   });
+  const data = {
+    message: 'Product checkout successfully',
+    theme: 'success',
+  };
+  res.send(data);
+  console.log(data.message);
+  res.end;
 });
 
 //Error Handling
