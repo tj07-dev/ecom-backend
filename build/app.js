@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 });
 /* Api to check stock (add)*/
 app.post('/cart', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (req.body.id || (req.body.stock && req.body.quantity)) {
+    if (!req.body.id || req.body.stock || !req.body.quantity) {
         let id = req.body.id;
         let availability = req.body.stock;
         let quantity = req.body.quantity;
@@ -58,7 +58,7 @@ app.post('/cart', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 }));
 /* Api to check stock (remove)*/
 app.post('/cartRemove', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (req.body.id && req.body.stock && req.body.quantity) {
+    if (req.body.id) {
         let id = req.body.id;
         let availability = req.body.stock;
         let quantity = req.body.quantity;

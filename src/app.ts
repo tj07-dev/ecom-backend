@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
 /* Api to check stock (add)*/
 app.post('/cart', async (req: Request, res: Response) => {
-  if (req.body.id || (req.body.stock && req.body.quantity)) {
+  if (!req.body.id || req.body.stock || !req.body.quantity) {
     let id: number = req.body.id;
     let availability: number = req.body.stock;
     let quantity: number = req.body.quantity;
@@ -43,7 +43,6 @@ app.post('/cart', async (req: Request, res: Response) => {
     } else {
       const data = {
         message: `Product ${id} is currently out of stock`,
-
         theme: 'fail',
       };
       res.send(data);
@@ -62,7 +61,7 @@ app.post('/cart', async (req: Request, res: Response) => {
 
 /* Api to check stock (remove)*/
 app.post('/cartRemove', async (req: Request, res: Response) => {
-  if (req.body.id && req.body.stock && req.body.quantity) {
+  if (req.body.id) {
     let id: number = req.body.id;
     let availability: number = req.body.stock;
     let quantity: number = req.body.quantity;

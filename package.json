@@ -9,7 +9,7 @@
     "backend": "npx tsc && mocha './build/tests/**/*.spec.js' && nodemon ./build/app.js",
     "dev": "nodemon ./build/app.js"
   },
-  "author": "Tanmay",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.3.4",

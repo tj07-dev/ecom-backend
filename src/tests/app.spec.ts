@@ -1,6 +1,5 @@
 import supertest from 'supertest';
 import app from '../app';
-import express, { request, Request } from 'express';
 
 import { expect } from 'chai';
 describe('Out of stock Test', () => {
@@ -21,8 +20,6 @@ describe('Expacted', () => {
 
     const expected = 'Product 46 is currently out of stock';
     const res = await supertest(app).post('/cart').send(a);
-
-    console.log(expected);
   });
 });
 
